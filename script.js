@@ -14,7 +14,7 @@ function computerPlay() {
     }
     return choice;
 }
-let conputerSelection;
+let computerSelection;
 computerSelection = computerPlay();
 console.log(computerSelection);
 
@@ -38,8 +38,34 @@ function playerPlay() {
     }
     return playerInput;
 }
-let playerSelection = playerPlay();
+let playerSelection;
+playerSelection = playerPlay();
 console.log(playerSelection);
 
+// a function to play one round of rock paper scissors
+
+function playRound(computerSelection, playerSelection) {
+    if ((computerSelection === 'Rock') && (playerSelection === 'Paper')) {
+        return (`You win! ${playerSelection} beats ${computerSelection}`);
+    }
+    else if ((computerSelection === 'Paper') && (playerSelection === 'Scissors')) {
+        return (`You win! ${playerSelection} beats ${computerSelection}`);
+    }
+    else if ((computerSelection === 'Scissors') && (playerSelection === 'Rock')) {
+        return (`You win! ${playerSelection} beats ${computerSelection}`);
+    }
+    else if (computerSelection === playerSelection) {
+        return ('It\'s a draw!');
+    }
+    else if ((playerSelection !== 'Rock') || (!playerSelection !== 'Paper') || (!playerSelection !== 'Scissors')) {
+        return ('Try again!');
+    }
+    else {
+        return (`You Lose! ${computerSelection} beats ${playerSelection}`);
+    }
+}
+
+alert(playRound(computerSelection, playerSelection));
+console.log(playRound(computerSelection, playerSelection));
 
 
