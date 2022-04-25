@@ -1,4 +1,5 @@
 // a function for computer's selection
+
 function computerPlay() {
     let num;
     let choice;
@@ -15,8 +16,6 @@ function computerPlay() {
     return choice;
 }
 let computerSelection;
-computerSelection = computerPlay();
-console.log(computerSelection);
 
 // a function for user's selection
 
@@ -39,12 +38,10 @@ function playerPlay() {
     return playerInput;
 }
 let playerSelection;
-playerSelection = playerPlay();
-console.log(playerSelection);
 
 // a function to play one round of rock paper scissors
 
-function playRound(computerSelection, playerSelection) {
+function playRound() {
     if ((computerSelection === 'Rock') && (playerSelection === 'Paper')) {
         return (`You win! ${playerSelection} beats ${computerSelection}`);
     }
@@ -57,15 +54,60 @@ function playRound(computerSelection, playerSelection) {
     else if (computerSelection === playerSelection) {
         return ('It\'s a draw!');
     }
-    else if ((playerSelection !== 'Rock') || (!playerSelection !== 'Paper') || (!playerSelection !== 'Scissors')) {
-        return ('Try again!');
-    }
     else {
         return (`You Lose! ${computerSelection} beats ${playerSelection}`);
     }
 }
 
-alert(playRound(computerSelection, playerSelection));
-console.log(playRound(computerSelection, playerSelection));
 
+function whoWon() {
+    let winner;
+    if (playRound() === `You win! ${playerSelection} beats ${computerSelection}`) {
+        winner = 'player';
+        return (winner);
+    }
+    else if (playRound() === `You Lose! ${computerSelection} beats ${playerSelection}`) {
+        winner = 'computer';
+        return (winner);
+    }
+    else {
+        return ('no winner');
+    }
+}
 
+function game() {
+    let x = parseInt(0);
+    let playerScore = parseInt(0);
+    let computerScore = parseInt(0);
+
+// playing game for five rounds
+
+    for (x=0; x<5; ++x) {
+        computerSelection = computerPlay();
+        playerSelection = playerPlay();
+        console.log(playRound());
+        whoWon();
+        
+        if (whoWon() === 'player') {
+            playerScore = playerScore +1;
+        }
+        else if (whoWon() === 'computer') {
+            computerScore = computerScore +1;
+        }
+        console.log(`You : ${playerScore} Computer : ${computerScore}`)
+    }
+
+// comparing scores
+
+    if (playerScore > computerScore) {
+        return (`FINAL SCORES You : ${playerScore} Computer : ${computerScore} You win!`)
+    }
+    else if (playerScore < computerScore) {
+        return (`FINAL SCORES You : ${playerScore} Computer : ${computerScore} You lose!`)
+    }
+    else (playerScore === computerScore) 
+        return (`FINAL SCORES You : ${playerScore} Computer : ${computerScore} It's a draw!`)
+    
+}
+
+console.log(game());
